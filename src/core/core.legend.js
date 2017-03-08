@@ -171,6 +171,12 @@ module.exports = function(Chart) {
 				});
 			}
 
+			if (labelOpts.itemSort) {
+				legendItems = legendItems.sort(function(a, b) {
+					return labelOpts.itemSort(a, b, me.chart.data);
+				});
+			}
+			
 			if (me.options.reverse) {
 				legendItems.reverse();
 			}
