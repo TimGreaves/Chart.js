@@ -668,6 +668,24 @@ module.exports = function(Chart) {
 				pt.y += bodyFontSize + bodySpacing;
 			};
 
+			var fillLineOfTextLabel = function(line) {
+					
+				var splitToken = ': ';
+				var splitLabels = line.split(splitToken);
+								
+				if (splitLabels.length > 1) {
+					ctx.fillText(splitLabels[0] + splitToken, pt.x + xLinePadding, pt.y);
+					var xPos = vm.x + vm.width - vm.xPadding;				
+					var al = ctx.textAlign;
+					ctx.textAlign = 'right';
+					ctx.fillText(splitLabels[1], xPos, pt.y);
+					ctx.textAlign = al;
+				} else {
+					ctx.fillText(line, pt.x + xLinePadding, pt.y);
+				}
+				pt.y += bodyFontSize + bodySpacing;
+			}
+			
 			// Before body lines
 			helpers.each(vm.beforeBody, fillLineOfText);
 
@@ -696,7 +714,7 @@ module.exports = function(Chart) {
 						ctx.fillStyle = textColor;
 					}
 
-					fillLineOfText(line);
+					fillLineOfTextLabel(line);
 				});
 
 				helpers.each(bodyItem.after, fillLineOfText);
