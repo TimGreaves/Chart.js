@@ -78,7 +78,7 @@ module.exports = function(Chart) {
 
 			// Cliping for Points.
 			// going out from inner charArea?
-			if ((chartArea !== undefined) && ((model.x < chartArea.left) || (chartArea.right*errMargin < model.x) || (model.y < chartArea.top) || (chartArea.bottom*errMargin < model.y))) {
+			if ((chartArea !== undefined) && ((model.x < Math.floor(chartArea.left)) || (chartArea.right*errMargin < model.x) || (model.y < chartArea.top) || (chartArea.bottom*errMargin < model.y))) {
 				// Point fade out
 				if (model.x < chartArea.left) {
 					ratio = (x - model.x) / (chartArea.left - model.x);
